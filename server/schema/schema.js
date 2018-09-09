@@ -14,3 +14,20 @@ const UserType = new GraphALObjectType({
     age: {type: GraphQLInt}
   }
 });
+
+const RootQuery = new GraphALObjectType({
+  name: 'RootQueryType',
+  fileds:{
+    user:{
+      type: UserType,
+      args:{
+        id : {
+        type: GraphQLString
+      }
+    },
+    resolve(parentVaule, args){
+      
+    }
+    }
+  }
+})
