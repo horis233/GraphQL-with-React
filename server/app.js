@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 const express = require('express');
 const expressGraphQL = require('express-graphql');
+const schema =  require('./schema/schema');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/graphql', expressGraphQL({
+  schema, 
   graphiql:true
 }))
 // catch 404 and forward to error handler
