@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
-import ApolloClient from 'apollo-client';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import {ApolloProvider} from 'react-apollo';
 
 import App from './components/App';
@@ -11,8 +11,13 @@ import SongDetail from './components/SongDetail';
 
 import './style/style.css';
 
+const networkInterface = createNetworkInterface({
+  uri: 'http://localhost:4000/graphql',
+});
+
 const client = new ApolloClient({
-  dataIdFromObject: o => o.id
+  dataIdFromObject: o => o.id,
+  networkInterface
 });
 
 const Root = () => {
